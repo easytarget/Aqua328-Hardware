@@ -105,12 +105,12 @@ $EndComp
 Wire Wire Line
 	7700 1450 7700 1300
 $Comp
-L Connector_Generic:Conn_01x04 ABRG_LED1
+L Connector:Screw_Terminal_01x04 ABRG_LED1
 U 1 1 5C9816CC
 P 10600 1200
 F 0 "ABRG_LED1" H 10600 1450 50  0000 L CNN
 F 1 "LED-Strip" H 10650 850 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 10600 1200 50  0001 C CNN
+F 2 "TerminalBlock:TerminalBlock_bornier-4_P5.08mm" H 10600 1200 50  0001 C CNN
 F 3 "~" H 10600 1200 50  0001 C CNN
 F 4 "Anode" H 10700 1300 50  0000 L CNN "Field4"
 F 5 "Blue" H 10700 1200 50  0000 L CNN "Field5"
@@ -131,12 +131,12 @@ F 3 "" H 10400 1100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector_Generic:Conn_01x02 FAN1
+L Connector:Screw_Terminal_01x02 FAN1
 U 1 1 5C981D1B
 P 10200 4500
 F 0 "FAN1" H 10300 4450 50  0000 L CNN
 F 1 "Fan PWM NPN" H 9950 4250 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 10200 4500 50  0001 C CNN
+F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 10200 4500 50  0001 C CNN
 F 3 "~" H 10200 4500 50  0001 C CNN
 	1    10200 4500
 	1    0    0    -1  
