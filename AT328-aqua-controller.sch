@@ -6,8 +6,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "ATMega328P based aquarium controller"
-Date "2019-10-02"
-Rev "v1.2"
+Date "2019-10-15"
+Rev "v1.3"
 Comp "Owen"
 Comment1 ""
 Comment2 ""
