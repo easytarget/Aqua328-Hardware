@@ -92,7 +92,7 @@ module case() {
 // Screen mount 'neck'
     translate([screenXoffset,0,tall+lidZ])
     rotate([90,0,180])
-    rotate_extrude(angle=45,convexity=5,$fn=120) {
+    rotate_extrude(angle=45,convexity=5) {
         translate([(screenpcbY+walls*4)/2,0])
         difference() {
             minkowski() {
@@ -137,7 +137,7 @@ module case() {
             square([2,2]);
             circle(0.5);
         }
-        translate([5,5,tall-12]) 
+        translate([4.5,4.5,tall-12]) 
         cylinder(d=3.5,h=13,$fn=6);
     }
     translate([screenXoffset,pcbY/2+walls,0])
@@ -146,7 +146,7 @@ module case() {
             translate([0,-2]) square([2,2]);
             circle(0.5);
         }
-        translate([5,-5,tall-12]) 
+        translate([4.5,-4.5,tall-12]) 
         cylinder(d=3.5,h=13,$fn=6);
     }
     translate([pcbX/2+walls,-pcbY/2-walls,0])
@@ -155,7 +155,7 @@ module case() {
             translate([-2,0]) square([2,2]);
             circle(0.5);
         }
-        translate([-5,5,tall-15]) 
+        translate([-4.5,4.5,tall-15]) 
         cylinder(d=3.5,h=16,$fn=6);
     }
     translate([pcbX/2+walls,pcbY/2+walls,0])
@@ -164,7 +164,7 @@ module case() {
             translate([-2,-2]) square([2,2]);
             circle(0.5);
         }
-        translate([-5,-5,tall-12]) 
+        translate([-4.5,-4.5,tall-12]) 
         cylinder(d=3.5,h=13,$fn=6);
     }
 }
@@ -175,13 +175,13 @@ module lid() {
             square([pcbX/2-screenXoffset,pcbY+walls*2]);
             circle(walls);
         }
-        translate([5-walls,5])
+        translate([4.5-walls,4.5])
         circle(d=4.3);
-        translate([5-walls,pcbY+walls*2-5])
+        translate([4.5-walls,pcbY+walls*2-4.5])
         circle(d=4.3);
-        translate([pcbX/2-screenXoffset-5,5])
+        translate([pcbX/2-screenXoffset-4.5,4.5])
         circle(d=4.3);
-        translate([pcbX/2-screenXoffset-5,pcbY+walls*2-5])
+        translate([pcbX/2-screenXoffset-4.5,pcbY+walls*2-4.5])
         circle(d=4.3);
     }
 }
