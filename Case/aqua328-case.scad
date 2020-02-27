@@ -18,11 +18,21 @@ screenpcbY=38; // screen Horizontal (total)
 screenXoffset=(-pcbX/2)+screenpcbY+walls*2;
 
 case();
-*translate([0.1,0,tall+0.1]) {
+
+translate([0.1,0,tall+0.1]) {
     color("LightBlue",0.5) 
     linear_extrude(lidZ) lid();
-}
+    }
+
 *translate([0,0]) lid();
+
+*speakergrill();
+translate([54,-pcbY/2-walls*2,pcbZ+9]) {
+    color("Gray",0.8) 
+    rotate([90,0,180])
+    speakergrill();
+    }
+
 
 module case() {
 // Base
@@ -137,8 +147,8 @@ module case() {
             square([2,2]);
             circle(0.5);
         }
-        translate([4.5,4.5,tall-12]) 
-        cylinder(d=3.5,h=13,$fn=6);
+        translate([4.5,4.5,tall-15]) 
+        cylinder(d=3.5,h=16,$fn=6);
     }
     translate([screenXoffset,pcbY/2+walls,0])
     difference() {
@@ -146,14 +156,14 @@ module case() {
             translate([0,-2]) square([2,2]);
             circle(0.5);
         }
-        translate([4.5,-4.5,tall-12]) 
-        cylinder(d=3.5,h=13,$fn=6);
+        translate([4.5,-4.5,tall-15]) 
+        cylinder(d=3.5,h=16,$fn=6);
     }
     translate([pcbX/2+walls,-pcbY/2-walls,0])
     difference() {
         linear_extrude(tall,scale=4) minkowski() {
-            translate([-2,0]) square([2,2]);
-            circle(0.5);
+            translate([-1.5,0.5]) square([1,1]);
+            circle(1);
         }
         translate([-4.5,4.5,tall-15]) 
         cylinder(d=3.5,h=16,$fn=6);
@@ -161,27 +171,56 @@ module case() {
     translate([pcbX/2+walls,pcbY/2+walls,0])
     difference() {
         linear_extrude(tall,scale=4) minkowski() {
-            translate([-2,-2]) square([2,2]);
-            circle(0.5);
+            translate([-1.5,-1.5]) square([1,1]);
+            circle(1);
         }
-        translate([-4.5,-4.5,tall-12]) 
-        cylinder(d=3.5,h=13,$fn=6);
+        translate([-4.5,-4.5,tall-15]) 
+        cylinder(d=3.5,h=16,$fn=6);
     }
 }
 
 module lid() {
-    translate([screenXoffset+walls,-pcbY/2-walls]) difference() {
+    translate([screenXoffset+walls+2.5,-pcbY/2]) difference() {
         minkowski() {
-            square([pcbX/2-screenXoffset,pcbY+walls*2]);
-            circle(walls);
+            square([pcbX/2-screenXoffset-walls*2-0.5,pcbY]);
+            circle(walls*2);
         }
-        translate([4.5-walls,4.5])
-        circle(d=4.3);
-        translate([4.5-walls,pcbY+walls*2-4.5])
-        circle(d=4.3);
-        translate([pcbX/2-screenXoffset-4.5,4.5])
-        circle(d=4.3);
-        translate([pcbX/2-screenXoffset-4.5,pcbY+walls*2-4.5])
-        circle(d=4.3);
+        translate([2-walls,2.5])
+        circle(d=5);
+        translate([2-walls,pcbY+walls*2-6.5])
+        circle(d=5);
+        translate([pcbX/2-screenXoffset-7,2.5])
+        circle(d=5);
+        translate([pcbX/2-screenXoffset-7,pcbY+walls*2-6.5])
+        circle(d=5);
+    }
+}
+
+module speakergrill() {
+    difference() {
+        minkowski() {
+            cube([18,24,4],center=true);
+            sphere(r=3);
+        }
+        minkowski() {
+            cube([18,24,4],center=true);
+            sphere(r=1.5);
+        }
+        translate([-20,-20,0]) 
+        cube([40,40,10]);
+        *hull() {
+            translate([0,-11,-10]) 
+            cylinder(h=20,d=1);
+            translate([0,-1,-10]) 
+            cylinder(h=20,d=1);
+        }
+        translate([0,-1,-10]) 
+        scale([0.7,1,1]) 
+        for (a=[-4:1:4]) {
+            rotate([0,0,a*38]) 
+            translate([0,8,0]) 
+            scale([2.5,10,1]) 
+            cylinder(h=20,d=1);
+        }
     }
 }
