@@ -7,7 +7,7 @@ pcbZ=8;
 base=1.5; // base thickness
 walls=2;  // wall thickness
 tall=40;  // wall height
-lidZ=8;    //thickness for lid piece
+lidZ=1.5;    //thickness for lid piece
 pcbOffset=25;
 pcbHoleX=70;
 pcbHoleY=70;
@@ -17,17 +17,19 @@ screenpcbX=pcbY; // screen Vertical (min. 80)
 screenpcbY=38; // screen Horizontal (total)
 screenXoffset=(-pcbX/2)+screenpcbY+walls*2;
 
-case();
+*case();
 
-translate([0.1,0,tall+0.1]) {
-    color("LightBlue",0.5) 
-    linear_extrude(lidZ) lid();
-    }
 
-*translate([0,0]) lid();
+*translate([0.1,0,tall+0.1]) {
+  color("LightBlue",0.5) 
+  linear_extrude(lidZ) 
+    lid();
+}
+
+translate([0,0]) lid();
 
 *speakergrill();
-translate([54,-pcbY/2-walls*2,pcbZ+9]) {
+*translate([54,-pcbY/2-walls*2,pcbZ+9]) {
     color("Gray",0.8) 
     rotate([90,0,180])
     speakergrill();
@@ -41,10 +43,12 @@ module case() {
             square([pcbX,pcbY],center=true);
             circle(r=walls*2);
         }
+        // Cable holes
         hull() {
             for (x=[-40,-65],y=[-40,40])
                 translate([x,y]) circle(d=8);
         }
+        // MountHoles
         for (x=[-22,68],y=[-24,24])
             translate([x,y]) circle(d=4);
    }
@@ -179,20 +183,20 @@ module case() {
     }
 }
 
-module lid() {
+module lid(hole=5.6) {
     translate([screenXoffset+walls+2.5,-pcbY/2]) difference() {
         minkowski() {
             square([pcbX/2-screenXoffset-walls*2-0.5,pcbY]);
             circle(walls*2);
         }
         translate([2-walls,2.5])
-        circle(d=5);
+        circle(d=hole);
         translate([2-walls,pcbY+walls*2-6.5])
-        circle(d=5);
+        circle(d=hole);
         translate([pcbX/2-screenXoffset-7,2.5])
-        circle(d=5);
+        circle(d=hole);
         translate([pcbX/2-screenXoffset-7,pcbY+walls*2-6.5])
-        circle(d=5);
+        circle(d=hole);
     }
 }
 
